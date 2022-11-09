@@ -13,3 +13,9 @@ pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', 10)
 pd.set_option('display.float_format', lambda x: '%.5f' % x)
 
+#####  Görev 1: Veriyi Hazırlama ve Analiz Etme
+##Adım 1: ab_testing_data.xlsx adlı kontrol ve test grubu verilerinden oluşan veri setini okutunuz. Kontrol ve test grubu verilerini ayrı değişkenlere atayınız
+
+control = pd.read_excel("ab_testing.xlsx", sheet_name="Control Group")
+test = pd.read_excel("ab_testing.xlsx", sheet_name="Test Group")
+
