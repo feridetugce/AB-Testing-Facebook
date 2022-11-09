@@ -29,3 +29,41 @@ test.describe().T
 df = pd.concat([control, test], axis=0, ignore_index=True )
 df.head()
 
+##### Görev 2: A/B Testinin Hipotezinin Tanımlanması
+
+##Adım 1: Hipotezi tanımlayınız.
+
+# H0 : M1 = M2  iki grup ortalaması arasında anlamlı bir farklılık yoktur
+# H1 : M1!= M2  iki grup ortalaması arasında anlamlı bir farklılık vardır
+
+## Adım 2: Kontrol ve test grubu için purchase (kazanç) ortalamalarını analiz ediniz.
+
+control["Purchase"].mean()
+test["Purchase"].mean()
+
+#### Görev 3: Hipotez Testinin Gerçekleştirilmesi   ###########################3
+
+#Adım 1: Hipotez testi yapılmadan önce varsayım kontrollerini yapınız.
+
+#Adım 2: Normallik Varsayımı ve Varyans Homojenliği sonuçlarına göre uygun testi seçiniz.
+
+##### Normallik Varsayımı  ##############
+
+# H0: Normal dağılım varsayımı sağlanmaktadır.
+# H1: Normal dağılım varsayımı sağlanmamaktadır.
+# p < 0.05 H0 RED , p > 0.05 H0 REDDEDİLEMEZ
+
+# Test sonucuna göre normallik varsayımı kontrol ve test grupları için sağlanıyor mu ? Elde edilen p-value değerlerini yorumlayınız.
+
+test_stat, pvalue = shapiro(test["Purchase"])
+print('Test Stat = %.4f, p-value = %.4f' % (test_stat, pvalue))
+
+                                # p-value=0.1541 > 0.05 do not reject
+                                # Normallik varsayımı sağlanmaktadır
+
+test_stat, pvalue = shapiro(control["Purchase"])
+print('Test Stat = %.4f, p-value = %.4f' % (test_stat, pvalue))
+
+                                # p-value=0.5891 > 0.05 do not rej
+                                # Normallik varsayımı sağlanmaktadır
+
