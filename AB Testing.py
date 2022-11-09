@@ -13,7 +13,7 @@ pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', 10)
 pd.set_option('display.float_format', lambda x: '%.5f' % x)
 
-#####  Görev 1: Veriyi Hazırlama ve Analiz Etme
+##################  Görev 1: Veriyi Hazırlama ve Analiz Etme #####################
 ## Adım 1: ab_testing_data.xlsx adlı kontrol ve test grubu verilerinden oluşan veri setini okutunuz. Kontrol ve test grubu verilerini ayrı değişkenlere atayınız
 
 control = pd.read_excel("ab_testing.xlsx", sheet_name="Control Group")
@@ -29,7 +29,7 @@ test.describe().T
 df = pd.concat([control, test], axis=0, ignore_index=True )
 df.head()
 
-##### Görev 2: A/B Testinin Hipotezinin Tanımlanması
+##################### Görev 2: A/B Testinin Hipotezinin Tanımlanması ##################
 
 ##Adım 1: Hipotezi tanımlayınız.
 
@@ -41,7 +41,7 @@ df.head()
 control["Purchase"].mean()
 test["Purchase"].mean()
 
-#### Görev 3: Hipotez Testinin Gerçekleştirilmesi   ###########################3
+######################## Görev 3: Hipotez Testinin Gerçekleştirilmesi   ###########################
 
 #Adım 1: Hipotez testi yapılmadan önce varsayım kontrollerini yapınız.
 
@@ -82,5 +82,16 @@ print('Test Stat = %.4f, p-value = %.4f' % (test_stat, pvalue))             # p-
                                                                              # Varyanslar homojendir
     
     
+################################  Görev 4: Sonuçların Analizi  ########################################
 
+#Adım 1: Hangi testi kullandınız, sebeplerini belirtiniz.
 
+#Ortalamalar kıyaslandığından normallik varsayımı sağlanıyorsa parametrik (T test), sağlanmıyorsa non-parametrik (mannwhitneyu) test kullanmalıyız
+#Varsayımlar sağlandığı için parametrik test olan T test i kullandık
+
+#Adım 2: Elde ettiğiniz test sonuçlarına göre müşteriye tavsiyede bulununuz.
+
+# Test sonuçlarına göre "maximumbidding" adı verilen teklif verme türü ile "average bidding" 'in getirdiği oralamat kazançlar arasında istatistiki 
+# olarak anlamlı bir farklılık yoktur.
+# Bu durumda teklif verme sisteminde geliştirme yapılmadığı sürece average bidding uygulaması anlamlı bir fark yaratmayacaktır.
+# Bir süre daha gözlem yapılarak ve veri sayısı arttırılarak daha büyük bir örneklem kütlesi ile aynı testler tekrarlanabilir.
