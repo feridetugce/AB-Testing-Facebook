@@ -67,3 +67,20 @@ print('Test Stat = %.4f, p-value = %.4f' % (test_stat, pvalue))
                                 # p-value=0.5891 > 0.05 do not rej
                                 # Normallik varsayımı sağlanmaktadır
 
+
+#### Varyans Homojenliği ##############
+
+# H0: Varyanslar homojendir.
+# H1: Varyanslar homojen değildir.
+# p < 0.05 H0 RED , p > 0.05 H0 REDDEDİLEMEZ
+# Kontrol ve test grubu için varyans homojenliğinin sağlanıp sağlanmadığını Purchase değişkeni üzerinden test ediniz.
+# Test sonucuna göre normallik varsayımı sağlanıyor mu? Elde edilen p-value değerlerini yorumlayınız.
+
+test_stat, pvalue = levene(test["Purchase"],
+                           control["Purchase"])
+print('Test Stat = %.4f, p-value = %.4f' % (test_stat, pvalue))             # p-value=0.1083 > 0.05
+                                                                             # Varyanslar homojendir
+    
+    
+
+
