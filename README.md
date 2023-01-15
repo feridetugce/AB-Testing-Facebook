@@ -6,10 +6,10 @@ In this study, bombabomba.com randomly splits its audience into two equally size
 
 For the existing 1-month test, bombabomba.com now expects you to analyze the results of this A/B test.
 
-Impression: The number of times an ad is displayed.
-Click: The number of clicks on ad links 
-Purchase: Number of products purchased after ads clicked
-Earning: Earning after purchasing products
+Impression: The number of times an ad is displayed. 
+Click: The number of clicks on ad links   
+Purchase: Number of products purchased after ads clicked  
+Earning: Earning after purchasing products  
 
 Warning!!!!!!!
 I should point out that I cannot share the dataset because it is not open source.
@@ -26,6 +26,11 @@ Bu nedenle, istatistiksel testler için Purchase metriğine odaklanılmalıdır.
 Bir firmanın web site bilgilerini içeren bu veri setinde kullanıcıların gördükleri ve tıkladıkları reklam sayıları gibi bilgilerin yanı sıra buradan gelen kazanç 
 bilgileri yer almaktadır. Kontrol ve Test grubu olmak üzere iki ayrı veri seti vardır. Bu veri setleri ab_testing.xlsx excel’inin ayrı sayfalarında yer almaktadır. 
 Kontrol grubuna Maximum Bidding, test grubuna Average Bidding uygulanmıştır.
+
+Impression: Reklam görüntüleme sayısı 
+Click: Görüntülenen reklama tıklama sayısı  
+Purchase: Tıklanan reklamlar sonrası satın alınan ürün sayısı 
+Earning: Satın alınan ürünler sonrası elde edilen kazanç  
 
 Uyarı!!!
 Veri seti açık kaynak olmadığı için paylaşılamamaktadır. 
