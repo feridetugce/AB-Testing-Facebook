@@ -27,10 +27,10 @@ Bir firmanın web site bilgilerini içeren bu veri setinde kullanıcıların gö
 bilgileri yer almaktadır. Kontrol ve Test grubu olmak üzere iki ayrı veri seti vardır. Bu veri setleri ab_testing.xlsx excel’inin ayrı sayfalarında yer almaktadır. 
 Kontrol grubuna Maximum Bidding, test grubuna Average Bidding uygulanmıştır.
 
-Impression: Reklam görüntüleme sayısı 
-Click: Görüntülenen reklama tıklama sayısı  
-Purchase: Tıklanan reklamlar sonrası satın alınan ürün sayısı 
-Earning: Satın alınan ürünler sonrası elde edilen kazanç  
+Impression: Reklam görüntüleme sayısı   
+Click: Görüntülenen reklama tıklama sayısı    
+Purchase: Tıklanan reklamlar sonrası satın alınan ürün sayısı   
+Earning: Satın alınan ürünler sonrası elde edilen kazanç    
 
 Uyarı!!!
 Veri seti açık kaynak olmadığı için paylaşılamamaktadır. 
