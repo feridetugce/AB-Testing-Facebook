@@ -1,36 +1,25 @@
 # A/B-Testing.py
-[EN]
-Facebook recently introduced a new bidding type, “average bidding”, as an alternative to its existing bidding type, called “maximum bidding”. One of our clients, bombabomba.com, has decided to test this new feature and wants to conduct an A/B test to understand if average bidding brings more conversions than maximum bidding.
+Analyze A/B Test Results
+Facebook recently introduced a new bidding type, “average bidding”, as an alternative to its exisiting bidding type, called “maximum bidding”. One of our clients, bombabomba.com, has decided to test this new feature and wants to conduct an A/B test to understand if average bidding brings more conversions than maximum bidding.
 
-In this study, bombabomba.com randomly splits its audience into two equally sized groups the test and the control. A Facebook ad campaign with “maximum bidding” is served to the “control group” and another campaign with “average bidding” is served to the “test group”.
+In this A/B test, bombabomba.com randomly splits its audience into two equally sized groups, e.g. the test and the control group. A Facebook ad campaign with “maximum bidding” is served to “control group” and another campaign with “average bidding” is served to the “test group”.
 
-For the existing 1-month test, bombabomba.com now expects you to analyze the results of this A/B test.
+The A/B test has run for 1 month and bombabomba.com now expects you to analyze the results of this A/B test.
 
-Impression: The number of times an ad is displayed. 
-Click: The number of clicks on ad links   
-Purchase: Number of products purchased after ads clicked  
-Earning: Earning after purchasing products  
+Facebook Ad: An advertisement created by a business on Facebook that's served up to Facebook users.
+Impressions: The number of times an ad is displayed.
+Reach: The number of unique people who saw an ad.
+Website Clicks: The number of clicks on ad links directed to Advertiser’s website.
+Website Click Through Rate: Number of Website Clicks / Number of Impressions x 100
+Cost per Action: Spend / Number of Actions
+Action: Can be any conversion event, such as Search, View Content, Add to Cart and Purchase.
+Conversion Rate: Number of Actions / Number of Website Clicks x 100
+The ultimate success metric for bombabomba.com is Number of Purchases.Therefore, we should focus on Purchase metrics for statistical testing.
 
-Warning!!!!!!!
+How would we define the hypothesis of this A/B test?
+H0 : There is no statistically significant difference between the Control group that was served “maximum bidding” campaign and Test group that was served “average bidding” campaign.
+
+H1 : There is statistically significant difference between the Control group that was served “maximum bidding” campaign and Test group that was served “average bidding” campaign.
+
+Warning!
 I should point out that I cannot share the dataset because it is not open source.
-
-[TR]
-
-Facebook kısa süre önce mevcut "maximum bidding" adı verilen teklif verme türüne alternatif olarak yeni bir teklif türü olan "average bidding"’i tanıttı.
-Müşterilerimizden biri olan bombabomba.com, bu yeni özelliği test etmeye karar verdi ve average bidding'in maximum bidding'den daha fazla dönüşüm getirip getirmediğini 
-anlamak için bir A/B testi yapmak istiyor. 
-
-A/B testi 1 aydır devam ediyor ve bombabomba.com şimdi sizden bu A/B testinin sonuçlarını analiz etmenizi bekliyor. Bombabomba.com için nihai başarı ölçütü Purchase'dır. 
-Bu nedenle, istatistiksel testler için Purchase metriğine odaklanılmalıdır.
-
-Bir firmanın web site bilgilerini içeren bu veri setinde kullanıcıların gördükleri ve tıkladıkları reklam sayıları gibi bilgilerin yanı sıra buradan gelen kazanç 
-bilgileri yer almaktadır. Kontrol ve Test grubu olmak üzere iki ayrı veri seti vardır. Bu veri setleri ab_testing.xlsx excel’inin ayrı sayfalarında yer almaktadır. 
-Kontrol grubuna Maximum Bidding, test grubuna Average Bidding uygulanmıştır.
-
-Impression: Reklam görüntüleme sayısı   
-Click: Görüntülenen reklama tıklama sayısı    
-Purchase: Tıklanan reklamlar sonrası satın alınan ürün sayısı   
-Earning: Satın alınan ürünler sonrası elde edilen kazanç    
-
-Uyarı!!!
-Veri seti açık kaynak olmadığı için paylaşılamamaktadır. 
