@@ -1,4 +1,3 @@
-##################################################################
 import itertools
 import pandas as pd
 import numpy as np
@@ -13,85 +12,83 @@ pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', 10)
 pd.set_option('display.float_format', lambda x: '%.5f' % x)
 
-##################  Görev 1: Veriyi Hazırlama ve Analiz Etme #####################
-## Adım 1: ab_testing_data.xlsx adlı kontrol ve test grubu verilerinden oluşan veri setini okutunuz. Kontrol ve test grubu verilerini ayrı değişkenlere atayınız
-
+# Assinging name for dataframes
 control = pd.read_excel("ab_testing.xlsx", sheet_name="Control Group")
 test = pd.read_excel("ab_testing.xlsx", sheet_name="Test Group")
 
-## Adım 2: Kontrol ve test grubu verilerini analiz ediniz.
-
+# Analyze the dataframes 
 control.describe().T
 test.describe().T
-
-## Adım 3: Analiz işleminden sonra concat metodunu kullanarak kontrol ve test grubu verilerini birleştiriniz.
 
 df = pd.concat([control, test], axis=0, ignore_index=True )
 df.head()
 
-##################### Görev 2: A/B Testinin Hipotezinin Tanımlanması ##################
 
-##Adım 1: Hipotezi tanımlayınız.
+# H0 : There is no statistically significant difference between the Control group that was served “maximum bidding” campaign and Test group that was served “average bidding” campaign.
+# H1 : There is statistically significant difference between the Control group that was served “maximum bidding” campaign and Test group that was served “average bidding” campaign.
 
-# H0 : M1 = M2  iki grup ortalaması arasında anlamlı bir farklılık yoktur
-# H1 : M1!= M2  iki grup ortalaması arasında anlamlı bir farklılık vardır
-
-## Adım 2: Kontrol ve test grubu için purchase (kazanç) ortalamalarını analiz ediniz.
 
 control["Purchase"].mean()
 test["Purchase"].mean()
 
-######################## Görev 3: Hipotez Testinin Gerçekleştirilmesi   ###########################
+############ Hyphotesis Testing ###############
 
-#Adım 1: Hipotez testi yapılmadan önce varsayım kontrollerini yapınız.
+# Indepented Two Sample T-Test
+# The Independent Samples t Test compares the means of two independent groups in order to determine whether there is statistical evidence that the associated population means are significantly different.
 
-#Adım 2: Normallik Varsayımı ve Varyans Homojenliği sonuçlarına göre uygun testi seçiniz.
+# Requirements
+# Normal distribution: Non-normal population distributions, especially those that are thick-tailed or heavily skewed, considerably reduce the power of the test
+# Homogeneity of variances : When this assumption is violated and the sample sizes for each group differ, the p value is not trustworthy.
 
-##### Normallik Varsayımı  ##############
+# The null hypothesis (H0) and alternative hypothesis (H1) of the Independent Samples t Test can be expressed in two different but equivalent ways:
 
-# H0: Normal dağılım varsayımı sağlanmaktadır.
-# H1: Normal dağılım varsayımı sağlanmamaktadır.
-# p < 0.05 H0 RED , p > 0.05 H0 REDDEDİLEMEZ
+# H0: µ1 = µ2 (the two population means are equal)
+# H1: µ1 ≠ µ2 (the two population means are not equal)
+ 
+# The Shapiro-Wilks Test for Normality
 
-# Test sonucuna göre normallik varsayımı kontrol ve test grupları için sağlanıyor mu ? Elde edilen p-value değerlerini yorumlayınız.
+# H0: There is no statistically significant difference between sample distribution and theoretical normal distribution
+# H1: There is statistically significant difference between sample distribution and theoretical normal distribution
+
+# The test rejects the hypothesis of normality when the p-value is less than or equal to 0.05. Failing the normality test allows you to state with 95% confidence the data does not fit the normal distribution.
+
+p-value < 0.05 (H0 rejected)
+p-value > 0.05 (H0 not rejected)
 
 test_stat, pvalue = shapiro(test["Purchase"])
 print('Test Stat = %.4f, p-value = %.4f' % (test_stat, pvalue))
 
                                 # p-value=0.1541 > 0.05 do not reject
-                                # Normallik varsayımı sağlanmaktadır
+                          
 
 test_stat, pvalue = shapiro(control["Purchase"])
 print('Test Stat = %.4f, p-value = %.4f' % (test_stat, pvalue))
 
                                 # p-value=0.5891 > 0.05 do not rej
-                                # Normallik varsayımı sağlanmaktadır
+                        
 
+# Levene’s Test for Homogeneity of variances
+# Levene’s test is an equal variance test. It can be used to check if our data sets fulfill the homogeneity of variance assumption before we perform the t-test or Analysis of Variance
 
-#### Varyans Homojenliği ##############
-
-# H0: Varyanslar homojendir.
-# H1: Varyanslar homojen değildir.
-# p < 0.05 H0 RED , p > 0.05 H0 REDDEDİLEMEZ
-# Kontrol ve test grubu için varyans homojenliğinin sağlanıp sağlanmadığını Purchase değişkeni üzerinden test ediniz.
-# Test sonucuna göre normallik varsayımı sağlanıyor mu? Elde edilen p-value değerlerini yorumlayınız.
+# H0: the compared groups have equal variance.
+# H1: the compared groups do not have equal variance.
 
 test_stat, pvalue = levene(test["Purchase"],
                            control["Purchase"])
-print('Test Stat = %.4f, p-value = %.4f' % (test_stat, pvalue))             # p-value=0.1083 > 0.05
-                                                                             # Varyanslar homojendir
-    
-    
-################################  Görev 4: Sonuçların Analizi  ########################################
+print('Test Stat = %.4f, p-value = %.4f' % (test_stat, value))           
 
-#Adım 1: Hangi testi kullandınız, sebeplerini belirtiniz.
+                                # p-value=0.1083 > 0.05 do not reject
+                                                                           
+# Which statistical test did we use, and why?
+# We used independent t-test because we want to determine if there is a significant difference between the means of two indepented groups, which may be related in certain features.
 
-#Ortalamalar kıyaslandığından normallik varsayımı sağlanıyorsa parametrik (T test), sağlanmıyorsa non-parametrik (mannwhitneyu) test kullanmalıyız
-#Varsayımlar sağlandığı için parametrik test olan T test i kullandık
+# What would be our recommendation to client?
+# There is no statistically significant difference between the Control group that was served “maximum bidding” campaign and Test group that was served “average bidding” campaign. For this reason, we can recommend continuing with the maximum bidding campaign currently used.
 
-#Adım 2: Elde ettiğiniz test sonuçlarına göre müşteriye tavsiyede bulununuz.
-
-# Test sonuçlarına göre "maximumbidding" adı verilen teklif verme türü ile "average bidding" 'in getirdiği oralamat kazançlar arasında istatistiki 
-# olarak anlamlı bir farklılık yoktur.
-# Bu durumda teklif verme sisteminde geliştirme yapılmadığı sürece average bidding uygulaması anlamlı bir fark yaratmayacaktır.
-# Bir süre daha gözlem yapılarak ve veri sayısı arttırılarak daha büyük bir örneklem kütlesi ile aynı testler tekrarlanabilir.
+# Conclusion
+# Hypothesis established and interpreted
+# The data was analyzed, outliers were observed
+# It was checked whether the assumptions were met for the statistical test to be applied
+# The assumptions were observed and tested
+# Commented based on -p-value
+# Suggestion offered to customer
