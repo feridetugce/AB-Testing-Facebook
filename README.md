@@ -17,9 +17,9 @@ The A/B test has run for 1 month and bombabomba.com now expects you to analyze t
 * Conversion Rate: Number of Actions / Number of Website Clicks x 100
 * The ultimate success metric for bombabomba.com is Number of Purchases.Therefore, we should focus on Purchase metrics for statistical testing.
 
-How would we define the hypothesis of this A/B test?
+#### How would we define the hypothesis of this A/B test?
 H0 : There is no statistically significant difference between the Control group that was served “maximum bidding” campaign and Test group that was served “average bidding” campaign.
-
+#
 H1 : There is statistically significant difference between the Control group that was served “maximum bidding” campaign and Test group that was served “average bidding” campaign.
 
 Warning!
